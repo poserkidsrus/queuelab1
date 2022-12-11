@@ -5,3 +5,6 @@ customer pushed into checkout based on item count
 processing time is 5 seconds per item
 each checkout has its own queue structure for customers to be added to, removing them from the main customer queue
 this is supposed to simulate speed of various versions of the checkout
+
+
+still having trouble implementing the timer
