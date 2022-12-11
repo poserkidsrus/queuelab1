@@ -47,7 +47,7 @@ public class Supermarket
         // initialise instance variables
         scanner = new Scanner(System.in);
         customers = new ArrayList<>();
-
+        this.customersInStore = new LinkedList<Customer>();
         numSuper = 10;
         numExp = 20;
         maxItems = 50;
@@ -62,85 +62,90 @@ public class Supermarket
     public void fillMarket()
     {
         System.out.println("How many customers are in the store today?");
-        input = scanner.nextInt();
-        System.out.println("How long are we simulating?");
-        totalTime = scanner.nextInt();
-        System.out.println("Would you like to print a trace of this simulation?");
-        z = this.scanner.next().charAt(0);
-        if(Character.toLowerCase(z) == 'y')
-        {
-            showAll = true;
-        }
+        int customersInStore = scanner.nextInt();
+        // System.out.println("How long are we simulating?");
+        // totalTime = scanner.nextInt();
+        // System.out.println("Would you like to print a trace of this simulation?");
+        // z = this.scanner.next().charAt(0);
+        // if(Character.toLowerCase(z) == 'y')
+        // {
+            // showAll = true;
+        // }
         
-        shoppingCart(showAll, input);
+        shoppingCart(customersInStore);
             
    
     }
     //adds shoppers
-    public void shoppingCart(boolean showAll, int input)
+    public void shoppingCart(int entry)
     {
-        customersInStore = new LinkedList<Customer>();
-
-        if (Math.random() < input/60) {
-            customersInStore.add(new Customer(clock));
-            if (showAll) {
-                System.out.println("Time is "
-                    + clock + "seconds: "
-                    + " arrival, new queue size is "
-                    + customersInStore.size());
-            }
-
+        
+        
+        for(int i = 0; i < entry; i++)
+        {
+            customersInStore.add(new Customer());
         }
+
+        // if (Math.random() < input/60) {
+            // customersInStore.add(new Customer());
+            // if (showAll) {
+                // System.out.println("Time is "
+                    // + clock + "seconds: "
+                    // + " arrival, new queue size is "
+                    // + customersInStore.size());
+            // }
+
+        // }
     }
     //return queue of customers with items
     public Queue<Customer> getQueue()
     {
-        return this.customersInStore;
+        return customersInStore;
     }
 
-    public void runSim()
-    {
-        for(clock = 0; clock < totalTime; clock++)
-        {
-            super1.newCustomer(clock,showAll);
-            ec1.newCustomer(clock,showAll);
-            ec2.newCustomer(clock,showAll);
-            for(Checkout checkout : checkoutLanes)
-            {
-                checkout.newCustomer(clock,showAll);
-            }
-            if(clock >= timeDone)
-            {
-                countDown();
-            }
-        }
-    }
+    // public void runSim()
+    // {
+        // for(clock = 0; clock < totalTime; clock++)
+        // {
+            // super1.newCustomer(clock,showAll);
+            // ec1.newCustomer(clock,showAll);
+            // ec2.newCustomer(clock,showAll);
+            // for(Checkout checkout : checkoutLanes)
+            // {
+                // checkout.newCustomer(clock,showAll);
+            // }
+            // if(clock >= timeDone)
+            // {
+                // countDown();
+            // }
+        // }
+    // }
 
-    public void countDown()
-    {
-        if(!super1.getQueue().isEmpty())
-        {
-            timeDone = super1.update(clock, showAll);
-        }
-        else if(!ec1.getQueue().isEmpty())
-        {
-            timeDone = ec1.update(clock,showAll);
-        }
-        else if(!ec2.getQueue().isEmpty())
-        {
-            timeDone = ec2.update(clock,showAll);
-        }
-        else
-        {
-            for(Checkout checkout : checkoutLanes)
-            {
-                if(!checkout.getQueue().isEmpty())
-                {
-                    timeDone = checkout.update(clock,showAll);
-                }
-            }
-        }
-    }
+    // public void countDown()
+    // {
+        // if(!super1.getQueue().isEmpty())
+        // {
+            // timeDone = super1.update(clock, showAll);
+        // }
+        // else if(!ec1.getQueue().isEmpty())
+        // {
+            // timeDone = ec1.update(clock,showAll);
+        // }
+        // else if(!ec2.getQueue().isEmpty())
+        // {
+            // timeDone = ec2.update(clock,showAll);
+        // }
+        // else
+        // {
+            // for(Checkout checkout : checkoutLanes)
+            // {
+                // if(!checkout.getQueue().isEmpty())
+                // {
+                    // timeDone = checkout.update(clock,showAll);
+                // }
+            // }
+        // }
+    // }
 
     //creates checkout lanes and sends customers to correct lane based on item count
     public void createCheckouts(Queue<Customer> input)
@@ -220,21 +225,21 @@ public class Supermarket
         System.out.println("Super1 data: ");
         for(Customer SEcustomer : superCheckout)
         {
-            SEcustomer.getItems();
+            System.out.println(SEcustomer.getItems()+" ");
         }
 
         ExpressCheckout ec1 = new ExpressCheckout(expressCheckout1);
         System.out.println("EC1 data: ");
         for(Customer Ecustomer : expressCheckout1)
         {
-            Ecustomer.getItems();
+            System.out.println(Ecustomer.getItems()+ " ");
         }
 
         ExpressCheckout ec2 = new ExpressCheckout(expressCheckout2);
         System.out.println("EC2 data: ");
         for(Customer Ecustomer : expressCheckout2)
         {
-            Ecustomer.getItems();
+            System.out.println(Ecustomer.getItems()+ " ");
         }
 
         for(Checkout checkout : checkoutLanes)
@@ -242,7 +247,7 @@ public class Supermarket
             System.out.println(checkout.getName());
             for(Customer customer : checkout.getQueue())
             {
-                customer.getItems();
+                System.out.println(customer.getItems()+ " ");
             }
         }
     }

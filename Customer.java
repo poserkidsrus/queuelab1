@@ -13,7 +13,7 @@ public class Customer
     private static int maxCheckout = 250;
     private int arrivalTime;
     
-    public Customer(int arrivalTime)
+    public Customer()
     {
         
         Random rand = new Random();

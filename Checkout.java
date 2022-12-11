@@ -25,34 +25,34 @@ public class Checkout
         this.numServed = 0;
     }
     
-    public void newCustomer(int clock, boolean showAll)
-    {
-        if (Math.random() < arrivalRate)
-        {
-            queue.add(new Customer(clock));
-            if(showAll)
-            {
-                System.out.println("Time is " +clock+ ": " +getName()+ "line has " +queue.size()+ " customers");
-            }
-        }
-    }
+    // public void newCustomer(int clock, boolean showAll)
+    // {
+        // if (Math.random() < arrivalRate)
+        // {
+            // queue.add(new Customer(clock));
+            // if(showAll)
+            // {
+                // System.out.println("Time is " +clock+ ": " +getName()+ "line has " +queue.size()+ " customers");
+            // }
+        // }
+    // }
     
-    public int update(int clock, boolean showAll)
-    {
-        Customer nextCustomer = queue.remove();
-        int timeStamp = nextCustomer.getArrivalTime();
-        int wait = clock - timeStamp;
-        totalWait += wait;
-        numServed++;
-        if (showAll) {
-            System.out.println("Time is " + clock
-                + ": Serving "
-                + getName()
-                + " with time stamp "
-                + timeStamp);
-        }
-        return clock + nextCustomer.getTimeInCheckout();
-    }
+    // public int update(int clock, boolean showAll)
+    // {
+        // Customer nextCustomer = queue.remove();
+        // int timeStamp = nextCustomer.getArrivalTime();
+        // int wait = clock - timeStamp;
+        // totalWait += wait;
+        // numServed++;
+        // if (showAll) {
+            // System.out.println("Time is " + clock
+                // + ": Serving "
+                // + getName()
+                // + " with time stamp "
+                // + timeStamp);
+        // }
+        // return clock + nextCustomer.getTimeInCheckout();
+    // }
 
     //make sure checkout is seeing correct number of items from customer
     public void processItems(int i)
@@ -80,14 +80,14 @@ public class Checkout
         return name;
     }
 
-    public void removeCustomer()
-    {
-    for(Customer customer : getQueue())
-    {
-        customer.setCheckoutTime();
-        getQueue().remove();
-    }   
-    }
+    // public void removeCustomer()
+    // {
+    // for(Customer customer : getQueue())
+    // {
+        // customer.setCheckoutTime();
+        // getQueue().remove();
+    // }   
+    
     public void createQueue(Customer customer)
     {
         Queue tempQueue = new LinkedList<>();

@@ -12,6 +12,7 @@ public class Main
         kroger.fillMarket(); //fill store with customers
         Queue<Customer> queue = kroger.getQueue(); //return queue of customers
         kroger.createCheckouts(queue); //enter this queue to the store program
+        
     }
     
 }
